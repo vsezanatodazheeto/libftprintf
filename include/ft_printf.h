@@ -1,7 +1,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdlib.h>
+// # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include <strings.h>
@@ -66,5 +66,6 @@ void	parse_main(t_basic *basic, const char *line, int *i);
 /* extra */
 void	basic_struct_init(t_basic *basic, int fd);
 t_basic	*basic_struct_get(void);
+void	*ft_memset(void *s, int c, size_t len);
 
 #endif

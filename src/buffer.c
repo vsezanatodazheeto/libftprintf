@@ -5,7 +5,7 @@ void	buf_print(t_output *output)
 	if (!output || !output->buf_i || !output->amount)
 		return ;
 	write(output->fd, output->buf, output->buf_i);
-	bzero(output->buf, BUF_SIZE);
+	ft_memset(output->buf, 0, BUF_SIZE);
 	output->buf_i = 0;
 }
 

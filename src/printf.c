@@ -34,8 +34,6 @@ int	ft_printf(const char *line, ...)
 
 	if (!line)
 		return (0);
-	printf("%d\n", BUF_SIZE);
-	exit(0);
 	basic = basic_struct_get();
 	basic_struct_init(basic, FD_STDOUT);
 	va_start(basic->vl, line);

@@ -1,51 +1,46 @@
-.PHONY: all clean fclean re
+.PHONY: clean fclean re
 
 #-------------------------------------------------------------------------------
-NAME = libftprintf.a
+NAME = libft_printf.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -pedantic
+CFLAGS = -Wall -Wextra -Werror -pedantic -g
+
 #-------------------------------------------------------------------------------
 DH = include/
 H = ft_printf.h
 H := $(addprefix $(DH), $(H))
+
 #-------------------------------------------------------------------------------
 DSRC = src/
-SRC = \
-	printf \
-	parse \
-	buffer \
-	buffer_number \
-	extra
-SRC := $(addprefix $(DSRC), $(addsuffix .c, $(SRC)))
+SRC = printf.c parse.c buffer.c buffer_number.c extra.c
+SRC := $(addprefix $(DSRC), $(SRC))
+
 #-------------------------------------------------------------------------------
 DOBJ = obj/
-OBJ = $(patsubst $(DSRC)%, $(DOBJ)%, $(SRC))
-OBJ := $(patsubst %.c, %.o, $(OBJ))
-#-------------------------------------------------------------------------------
-all:
-	@$(MAKE) -s $(NAME)
+OBJ := $(patsubst $(DSRC)%.c, $(DOBJ)%.o, $(SRC))
 
-$(NAME): $(DOBJ) $(OBJ)
+#-------------------------------------------------------------------------------
+
+all: $(NAME)
+
+$(NAME): $(DOBJ) $(OBJ) Makefile
 	@ar -rc $(NAME) $(OBJ)
-	@echo "--------------------------------"
+	@echo "--------------------------------------"
 	@echo "$(NAME) compiled"
-	@echo "--------------------------------"
+	@echo "--------------------------------------"
 
 $(DOBJ):
 	@mkdir -p $(DOBJ)
 
-$(DOBJ)%.o: $(DSRC)%.c $(H) Makefile
+$(DOBJ)%.o: $(DSRC)%.c $(H)
 	@echo $<
-	@$(CC) $(CFLAGS) \
-	-D BUF_SIZE=100 \
-	-I$(DH) -c $< -o $@
+	@$(CC) $(CFLAGS) -D BUF_SIZE=100 -I$(DH) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf $(DOBJ)
 
 fclean: clean
 	@rm -rf $(NAME)
 
 re: fclean all
 
-# @$(CC) $(CFLAGS) -I$(DH) -D BUF_SIZE -c $< -o $@

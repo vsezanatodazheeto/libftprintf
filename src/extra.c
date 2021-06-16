@@ -9,7 +9,22 @@ t_basic	*basic_struct_get(void)
 
 void	basic_struct_init(t_basic *basic, int fd)
 {
-	bzero(basic, sizeof(t_basic));
+	ft_memset(basic, 0, sizeof(t_basic));
 	basic->format->base = BASE_DECIMAL;
 	basic->output->fd = fd;
+}
+
+void	*ft_memset(void *s, int c, size_t len)
+{
+	size_t	i;
+	char	*temp;
+
+	temp = (char *)s;
+	i = 0;
+	while (i < len)
+	{
+		temp[i] = c;
+		i++;
+	}
+	return (s);
 }
