@@ -31,7 +31,7 @@ char	*cast_types_csper(t_basic *basic)
 
 	if (basic->format->type == 'c' || basic->format->type == '%')
 	{
-		ft_memset(cper, 0, CPER_SIZE);
+		ft_printf_memset(cper, 0, CPER_SIZE);
 		if (basic->format->type == 'c')
 			*cper = (char)va_arg(basic->vl, int);
 		else

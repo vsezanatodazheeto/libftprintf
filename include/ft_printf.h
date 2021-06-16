@@ -66,6 +66,6 @@ void	parse_main(t_basic *basic, const char *line, int *i);
 /* extra */
 void	basic_struct_init(t_basic *basic, int fd);
 t_basic	*basic_struct_get(void);
-void	*ft_memset(void *s, int c, size_t len);
+void	*ft_printf_memset(void *s, int c, size_t len);
 
 #endif
